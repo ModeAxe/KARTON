@@ -35,7 +35,7 @@ class HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    type = MapType.hybrid;
+    type = MapType.normal;
     markers = Set.from([]);
   }
 
@@ -65,14 +65,6 @@ class HomePageState extends State<HomePage> {
             alignment: Alignment.bottomRight,
             child: Row(
               children: <Widget>[
-                FloatingActionButton(
-                  onPressed: () {
-                    setState(() {
-                      type = type == MapType.hybrid ? MapType.normal : MapType.hybrid;
-                    });
-                  },
-                  child: Icon(Icons.map),
-                ),
                 FloatingActionButton(
                   child: Icon(Icons.zoom_in),
                   onPressed: () async{
