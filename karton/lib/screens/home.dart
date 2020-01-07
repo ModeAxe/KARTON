@@ -4,16 +4,16 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:karton/states/app_state.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Map());
@@ -47,7 +47,7 @@ class _MapState extends State<Map> {
                   SizedBox(height: 10,),
                   Visibility(
                     visible: appState.locationServiceActive == false,
-                    child: Text("Enable Location Services for this to work", style: TextStyle(color: Colors.grey, fontSize: 18),),
+                    child: Text("App Requires Location Services to be enabled", style: TextStyle(color: Colors.grey, fontSize: 18),),
                   )
                 ],
               )
@@ -97,7 +97,7 @@ class _MapState extends State<Map> {
                             color: Colors.black,
                           ),
                         ),
-                        hintText: "pick up location",
+                        hintText: "pick up",
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.only(left: 15.0, top: 16.0),
                       ),
@@ -140,7 +140,7 @@ class _MapState extends State<Map> {
                             color: Colors.black,
                           ),
                         ),
-                        hintText: "delivery location",
+                        hintText: "drop off",
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.only(left: 15.0, top: 16.0),
                       ),
