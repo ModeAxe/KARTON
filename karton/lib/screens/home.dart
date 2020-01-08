@@ -47,7 +47,7 @@ class _MapState extends State<Map> {
                   SizedBox(height: 10,),
                   Visibility(
                     visible: appState.locationServiceActive == false,
-                    child: Text("App Requires Location Services to be enabled", style: TextStyle(color: Colors.grey, fontSize: 18),),
+                    child: Text("Enable Location Services", style: TextStyle(color: Colors.black, fontSize: 18),),
                   )
                 ],
               )
