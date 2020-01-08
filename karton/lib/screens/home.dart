@@ -39,8 +39,8 @@ class _MapState extends State<Map> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
               SpinKitRotatingCircle(
-              color: Colors.black,
-                size: 50.0,
+              color: Colors.blueGrey,
+                size: 20.0,
               )
                     ],
                   ),

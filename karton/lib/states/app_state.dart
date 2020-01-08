@@ -22,6 +22,7 @@ class AppState with ChangeNotifier {
   Set<Polyline> get polyLines => _polyLines;
 
   AppState() {
+    WidgetsFlutterBinding.ensureInitialized();
     _getUserLocation();
     _loadingInitialPosition();
   }
