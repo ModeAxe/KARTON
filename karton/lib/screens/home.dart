@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:karton/requests/google_maps_requests.dart';
 import 'package:provider/provider.dart';
 import 'package:karton/states/app_state.dart';
 
@@ -38,7 +41,7 @@ class _MapState extends State<Map> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-              SpinKitRotatingCircle(
+              SpinKitDoubleBounce(
               color: Colors.blueGrey,
                 size: 20.0,
               )
@@ -89,17 +92,17 @@ class _MapState extends State<Map> {
                       controller: appState.locationController,
                       decoration: InputDecoration(
                         icon: Container(
-                          margin: EdgeInsets.only(left: 20, top: 5),
+                          margin: EdgeInsets.only(left: 20, top: 0, bottom: 10),
                           width: 10,
                           height: 10,
                           child: Icon(
-                            Icons.location_on,
-                            color: Colors.black,
+                            Icons.my_location,
+                            color: Colors.blue,
                           ),
                         ),
-                        hintText: "pick up",
+                        hintText: "PICK UP",
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(left: 15.0, top: 16.0),
+                        contentPadding: EdgeInsets.only(left: 15.0, top: 16.0, bottom: 10.0),
                       ),
                     ),
                   ),
@@ -124,6 +127,12 @@ class _MapState extends State<Map> {
                       ],
                     ),
                     child: TextField(
+                      onTap: ()async{
+                        Prediction p = await PlacesAutocomplete.show(context: context, apiKey: "AIzaSyC1eWbCVjzXnPBHdih525xhaQKfhUSM2WQ",
+                        language: "en", components:[
+                           Component(Component.country, "zm")
+                        ]);
+                      },
                       cursorColor: Colors.black,
                       controller: appState.destinationController,
                       textInputAction: TextInputAction.go,
@@ -132,17 +141,17 @@ class _MapState extends State<Map> {
                       },
                       decoration: InputDecoration(
                         icon: Container(
-                          margin: EdgeInsets.only(left: 20, top: 5),
+                          margin: EdgeInsets.only(left: 20, top: 0, bottom: 10),
                           width: 10,
                           height: 10,
                           child: Icon(
-                            Icons.local_taxi,
+                            Icons.pin_drop,
                             color: Colors.black,
                           ),
                         ),
-                        hintText: "drop off",
+                        hintText: "DROP OFF",
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(left: 15.0, top: 16.0),
+                        contentPadding: EdgeInsets.only(left: 15.0, top: 16.0, bottom: 10),
                       ),
                     ),
                   ),
