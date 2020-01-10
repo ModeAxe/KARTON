@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:karton/requests/google_maps_requests.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:provider/provider.dart';
 import 'package:karton/states/app_state.dart';
 
@@ -15,6 +16,9 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
+
+GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: apiKey);
+
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
@@ -128,10 +132,8 @@ class _MapState extends State<Map> {
                     ),
                     child: TextField(
                       onTap: ()async{
-                        Prediction p = await PlacesAutocomplete.show(context: context, apiKey: "AIzaSyC1eWbCVjzXnPBHdih525xhaQKfhUSM2WQ",
-                        language: "en", components:[
-                           Component(Component.country, "zm")
-                        ]);
+                        Prediction p = await PlacesAutocomplete.show(context: context, apiKey: "AIzaSyC1eWbCVjzXnPBHdih525xhaQKfhUSM2WQ");
+                        displayPrediction(p);
                       },
                       cursorColor: Colors.black,
                       controller: appState.destinationController,
@@ -170,4 +172,20 @@ class _MapState extends State<Map> {
             ),
     );
   }
+
+  Future<Null> displayPrediction(Prediction p) async {
+    if (p != null) {
+      PlacesDetailsResponse detail =
+      await _places.getDetailsByPlaceId(p.placeId);
+
+      var placeId = p.placeId;
+      double lat = detail.result.geometry.location.lat;
+      double lng = detail.result.geometry.location.lng;
+
+      var address = await Geocoder.local.findAddressesFromQuery(p.description);
+
+      print(lat);
+      print(lng);
+  }
+}
 }
